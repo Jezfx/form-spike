@@ -34,7 +34,6 @@ const fields = [
     Component: ControlledRadioGroup,
     group: {
       key: "trade_name_company_name_same",
-      mandatory: true,
       options: [
         {
           key: "name_same",

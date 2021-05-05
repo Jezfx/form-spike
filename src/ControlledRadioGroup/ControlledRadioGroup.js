@@ -7,7 +7,7 @@ import {
   FormLabel,
 } from "@material-ui/core";
 
-const ControlledRadioGroup = ({ title, defaultValue, group }) => {
+const ControlledRadioGroup = ({ title, group }) => {
   const { control, error } = useFormContext();
 
   const { key, options } = group;
@@ -21,14 +21,8 @@ const ControlledRadioGroup = ({ title, defaultValue, group }) => {
           fieldState: { error },
         }) => (
           <RadioGroup key={key} name={name} value={value} onChange={onChange}>
-            {options?.map((x) => (
-              <FormControlLabel
-                key={x?.key}
-                value={x?.value}
-                name={x?.name}
-                label={x?.label}
-                control={<Radio />}
-              />
+            {options?.map(({ ...props }) => (
+              <FormControlLabel control={<Radio />} {...props} />
             ))}
           </RadioGroup>
         )}
