@@ -1,11 +1,10 @@
 import React from "react";
 
-import { Button, Typography } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 
 import EditableForm from "./EditableForm";
 import ControlledTextField from "./ControlledTextField";
-import ControlledFieldArray from "./ControlledFieldArray";
 
 // QUESTIONS
 // radio fields
@@ -15,7 +14,7 @@ import ControlledFieldArray from "./ControlledFieldArray";
 // default values
 
 // tabbed forms
-// field arrays ✅
+// field arrays
 
 const renderButtons = () => (
   <Button type="submit" variant="contained" color="primary">
@@ -29,12 +28,6 @@ const fields = [
     name: "firstName",
     label: "First Name",
   },
-  {
-    Component: ControlledFieldArray,
-    name: "import_countries",
-    label: "Import contries",
-    defaultValue: ["spain", "germany"],
-  },
 ];
 
 const App = () => {
@@ -45,16 +38,12 @@ const App = () => {
   };
 
   return (
-    <>
-      <Typography variant="h6">Form Title</Typography>
-      <Typography variant="body2">Contextual information</Typography>
-      <EditableForm
-        methods={methods}
-        onSubmit={onSubmit}
-        fields={fields}
-        buttons={renderButtons}
-      />
-    </>
+    <EditableForm
+      methods={methods}
+      onSubmit={onSubmit}
+      fields={fields}
+      buttons={renderButtons}
+    />
   );
 };
 
