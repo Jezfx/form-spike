@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import EditableForm from "./EditableForm";
 import ControlledTextField from "./ControlledTextField";
+import ControlledRadioGroup from "./ControlledRadioGroup";
 
 // QUESTIONS
 // radio fields
@@ -27,6 +28,27 @@ const fields = [
     Component: ControlledTextField,
     name: "firstName",
     label: "First Name",
+  },
+  {
+    title: "Is this is the same as the name you trade under? *",
+    Component: ControlledRadioGroup,
+    group: {
+      key: "trade_name_company_name_same",
+      options: [
+        {
+          key: "name_same",
+          name: "trade_name_company_name_same",
+          label: "Yes",
+          value: "yes",
+        },
+        {
+          key: "name_diff",
+          name: "trade_name_company_name_same",
+          label: "No",
+          value: "no",
+        },
+      ],
+    },
   },
 ];
 
