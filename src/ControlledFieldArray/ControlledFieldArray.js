@@ -6,7 +6,6 @@ import { useFormContext, useFieldArray } from "react-hook-form";
 
 // TODO:
 // - Validation
-// - DefaultValues
 
 const ControlledFieldArray = ({ name, label }) => {
   const { control, error } = useFormContext();

@@ -34,7 +34,6 @@ const fields = [
     Component: ControlledFieldArray,
     name: "import_countries",
     label: "Import contries",
-    defaultValue: ["spain", "germany"],
   },
   {
     title: "Is this is the same as the name you trade under? *",
@@ -60,7 +59,9 @@ const fields = [
 ];
 
 const App = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: { import_countries: [{ id: 1, value: "spain" }] },
+  });
 
   const onSubmit = (data) => {
     console.log(data);
