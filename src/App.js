@@ -1,22 +1,23 @@
 import React from "react";
 
-import Button from "@material-ui/core/Button";
+import { Button, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 
 import EditableForm from "./EditableForm";
 import ControlledTextField from "./ControlledTextField";
 import ControlledRadioGroup from "./ControlledRadioGroup";
 import ControlledCheckboxGroup from "./ControlledCheckboxGroup";
+import ControlledFieldArray from "./ControlledFieldArray";
 
 // QUESTIONS
-// radio fields
+// radio fields ✅
 // checkboxes
 // dropdpwns
 // conditional radio checkboxes and radio options (groups / followUps)
 // default values
 
 // tabbed forms
-// field arrays
+// field arrays ✅
 
 const renderButtons = () => (
   <Button type="submit" variant="contained" color="primary">
@@ -29,6 +30,11 @@ const fields = [
     Component: ControlledTextField,
     name: "firstName",
     label: "First Name",
+  },
+  {
+    Component: ControlledFieldArray,
+    name: "import_countries",
+    label: "Import contries",
   },
   {
     title: "Is this is the same as the name you trade under? *",
@@ -71,19 +77,25 @@ const fields = [
 ];
 
 const App = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: { import_countries: [{ id: 1, value: "spain" }] },
+  });
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
   return (
-    <EditableForm
-      methods={methods}
-      onSubmit={onSubmit}
-      fields={fields}
-      buttons={renderButtons}
-    />
+    <>
+      <Typography variant="h6">Form Title</Typography>
+      <Typography variant="body2">Contextual information</Typography>
+      <EditableForm
+        methods={methods}
+        onSubmit={onSubmit}
+        fields={fields}
+        buttons={renderButtons}
+      />
+    </>
   );
 };
 
