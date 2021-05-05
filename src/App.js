@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import EditableForm from "./EditableForm";
 import ControlledTextField from "./ControlledTextField";
 import ControlledRadioGroup from "./ControlledRadioGroup";
+import ControlledCheckboxGroup from "./ControlledCheckboxGroup";
 
 // QUESTIONS
 // radio fields
@@ -37,15 +38,32 @@ const fields = [
       options: [
         {
           key: "name_same",
-          name: "trade_name_company_name_same",
           label: "Yes",
           value: "yes",
         },
         {
           key: "name_diff",
-          name: "trade_name_company_name_same",
           label: "No",
           value: "no",
+        },
+      ],
+    },
+  },
+  {
+    title: "Which of the following are you able to produce? *",
+    Component: ControlledCheckboxGroup,
+    group: {
+      key: "production_types",
+      options: [
+        {
+          key: "plus",
+          value: "Plus",
+          label: "Plus",
+        },
+        {
+          key: "petite",
+          value: "Petite",
+          label: "Petite",
         },
       ],
     },
