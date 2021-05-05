@@ -20,17 +20,18 @@ const ControlledCheckboxGroup = ({ title, group }) => {
           options?.map(({ ...props }, i) => (
             <FormControlLabel
               label={props.label}
-              key={`${key}.${i}`}
-              name={`${key}.${i}`}
               control={
                 <Checkbox
-                  {...props}
                   checked={value}
-                  name={`${name}.${i}`}
-                  key={`${key}.${i}`}
-                  onChange={(e) => onChange(e.target.checked)}
+                  name={`${name}[${i}]`}
+                  id={`${key}[${i}]`}
+                  key={`${key}[${i}]`}
+                  onChange={(e) =>
+                    onChange({ [props.value]: e.target.checked })
+                  }
                 />
               }
+              {...props}
             />
           ))
         }
