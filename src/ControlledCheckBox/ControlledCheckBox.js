@@ -20,7 +20,9 @@ const ControlledCheckBox = ({ group, name, label }) => {
                 <Checkbox
                   name={`${name}[${index}]`}
                   value={`${name}[${props.value}]`}
-                  onChange={() => onChange(props.value)}
+                  onChange={(e) => {
+                    e.target.checked ? onChange(props.value) : onChange();
+                  }}
                 />
               )}
             />
