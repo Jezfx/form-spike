@@ -5,7 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import { useFormContext } from "react-hook-form";
 
 const ControlledTextField = ({ name, labelm, defaultValue, label }) => {
-  // think we need to remove error from the render to get this one
   const { control } = useFormContext();
 
   return (

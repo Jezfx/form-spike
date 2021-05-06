@@ -15,6 +15,33 @@ export const fields = [
     label: "CheckBoxes",
     group: {
       key: "checkboxes",
+      followUp: {
+        condition: "other",
+        fields: [
+          {
+            label: "Other Options...",
+            Component: ControlledRadioGroup,
+            name: "level_two",
+            group: {
+              key: "level_three",
+              options: [
+                {
+                  key: "name_same",
+                  name: "isSameName",
+                  label: "Yes",
+                  value: "yes",
+                },
+                {
+                  key: "name_diff",
+                  name: "isDifferentName",
+                  label: "No",
+                  value: "no",
+                },
+              ],
+            },
+          },
+        ],
+      },
       options: [
         {
           key: "name_same",
@@ -23,10 +50,10 @@ export const fields = [
           value: "foo",
         },
         {
-          key: "name_diff",
-          name: "checkbox_two",
-          label: "check box two",
-          value: "bar",
+          key: "other",
+          name: "other",
+          label: "Other",
+          value: "other",
         },
       ],
     },
