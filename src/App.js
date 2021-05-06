@@ -1,15 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { Button, Typography } from "@material-ui/core";
-import { useForm } from "react-hook-form";
+import SingleForm from "./pages/SingleForm";
+import TabbedForm from "./pages/TabbedForm";
 
-import EditableForm from "./EditableForm";
-import { fields } from "./fields";
+// import EditableForm from "./EditableForm";
+// import { fields } from "./fields";
 
 // QUESTIONS
 // radio fields ✅
 // checkboxes ✅
-// dropdpwns
+// dropdpwns ✅
 // conditional radio checkboxes and radio options (groups / followUps) ✅
 // default values ✅
 // upload document https://share.getcloudapp.com/7KuPNR05
@@ -17,46 +18,23 @@ import { fields } from "./fields";
 // tabbed forms
 // field arrays ✅
 
-const renderButtons = () => (
-  <Button type="submit" variant="contained" color="primary">
-    Submit
-  </Button>
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/">
+        <Link to="/single-form">Single form</Link>
+        <br />
+        <br />
+        <Link to="/tabbed-form">Tabbed form</Link>
+      </Route>
+      <Route exact path="/single-form">
+        <SingleForm />
+      </Route>
+      <Route exact path="/tabbed-form">
+        <TabbedForm />
+      </Route>
+    </Switch>
+  </Router>
 );
-
-const defaultValues = {
-  import_countries: [
-    {
-      value: "spain",
-    },
-  ],
-  firstName: "sad",
-  level_one: "yes",
-  level_three: "no",
-  level_three_input: "asdad",
-  uk_responsible_person_country: "USD",
-};
-
-const App = () => {
-  const methods = useForm({
-    defaultValues,
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  return (
-    <>
-      <Typography variant="h6">Form Title</Typography>
-      <Typography variant="body2">Contextual information</Typography>
-      <EditableForm
-        methods={methods}
-        onSubmit={onSubmit}
-        fields={fields}
-        buttons={renderButtons}
-      />
-    </>
-  );
-};
 
 export default App;

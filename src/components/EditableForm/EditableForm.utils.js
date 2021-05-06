@@ -1,5 +1,5 @@
+import { isNotEmpty } from "../../utils";
 import { get, flow } from "lodash/fp";
-import { isNotEmpty } from "../utils";
 
 export const getKey = get("group.key");
 export const getFollowUp = get("group.followUp");
