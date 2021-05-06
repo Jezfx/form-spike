@@ -8,6 +8,7 @@ export const renderFields = (fields = []) =>
   fields.map(({ Component, ...props }) => (
     <div key={props.name}>
       <Component {...props} />
+
       {hasFollowUp(props) && (
         <FollowUpField
           key={getKey(props)}
