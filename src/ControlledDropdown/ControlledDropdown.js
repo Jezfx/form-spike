@@ -1,42 +1,46 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
+import { TextField, FormLabel, FormControl } from "@material-ui/core";
 import { useFormContext, Controller } from "react-hook-form";
 
-const ControlledDropdown = ({ label, options, name }) => {
+const ControlledDropdown = ({ label, options = [], name }) => {
   const { control } = useFormContext();
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field: { onChange, value, name }, fieldState: { error } }) => (
-        <TextField
-          select
-          onChange={onChange}
-          defaultValue="none"
-          value={value}
-          name={name}
-          error={!!error}
-          SelectProps={{
-            native: true,
-            defaultValue: "none",
-            inputProps: {
-              name: name,
-              defaultValue: "none",
-            },
-          }}
-        >
-          <option value="none" disabled>
-            Please Select
-          </option>
-          {options?.map((option) => (
-            <option key={option?.id} value={option?.value}>
-              {option?.label}
+    <FormControl>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
+      <Controller
+        id={name}
+        name={name}
+        control={control}
+        render={({
+          field: { onChange, value, name },
+          fieldState: { error },
+        }) => (
+          <TextField
+            select
+            onChange={onChange}
+            value={value || ""}
+            name={name}
+            error={!!error}
+            SelectProps={{
+              native: true,
+              inputProps: {
+                name: name,
+              },
+            }}
+          >
+            <option value="none" disabled>
+              Please Select
             </option>
-          ))}
-        </TextField>
-      )}
-    />
+            {options?.map(({ label, value, id }) => (
+              <option key={id} value={value}>
+                {label}
+              </option>
+            ))}
+          </TextField>
+        )}
+      />
+    </FormControl>
   );
 };
 
