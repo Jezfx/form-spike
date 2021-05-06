@@ -4,16 +4,14 @@ import { Button, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 
 import EditableForm from "./EditableForm";
-import ControlledTextField from "./ControlledTextField";
-import ControlledRadioGroup from "./ControlledRadioGroup";
-import ControlledFieldArray from "./ControlledFieldArray";
+import { fields } from "./fields";
 
 // QUESTIONS
 // radio fields ✅
-// checkboxes
+// checkboxes ✅
 // dropdpwns
-// conditional radio checkboxes and radio options (groups / followUps)
-// default values
+// conditional radio checkboxes and radio options (groups / followUps) ✅
+// default values ✅
 // upload document https://share.getcloudapp.com/7KuPNR05
 
 // tabbed forms
@@ -25,43 +23,21 @@ const renderButtons = () => (
   </Button>
 );
 
-const fields = [
-  {
-    Component: ControlledTextField,
-    name: "firstName",
-    label: "First Name",
-  },
-  {
-    Component: ControlledFieldArray,
-    name: "import_countries",
-    label: "Import contries",
-  },
-  {
-    title: "Is this is the same as the name you trade under? *",
-    Component: ControlledRadioGroup,
-    group: {
-      key: "trade_name_company_name_same",
-      options: [
-        {
-          key: "name_same",
-          name: "trade_name_company_name_same",
-          label: "Yes",
-          value: "yes",
-        },
-        {
-          key: "name_diff",
-          name: "trade_name_company_name_same",
-          label: "No",
-          value: "no",
-        },
-      ],
+const defaultValues = {
+  import_countries: [
+    {
+      value: "spain",
     },
-  },
-];
+  ],
+  firstName: "sad",
+  level_one: "yes",
+  level_three: "no",
+  level_three_input: "asdad",
+};
 
 const App = () => {
   const methods = useForm({
-    defaultValues: { import_countries: [{ id: 1, value: "spain" }] },
+    defaultValues,
   });
 
   const onSubmit = (data) => {
