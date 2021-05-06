@@ -33,6 +33,7 @@ const defaultValues = {
   level_one: "yes",
   level_three: "no",
   level_three_input: "asdad",
+  uk_responsible_person_country: "USD",
 };
 
 const App = () => {
