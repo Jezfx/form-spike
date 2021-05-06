@@ -4,11 +4,8 @@ import { TextField, Button, ButtonGroup, Box } from "@material-ui/core";
 
 import { useFormContext, useFieldArray } from "react-hook-form";
 
-// TODO:
-// - Validation
-
 const ControlledFieldArray = ({ name, label }) => {
-  const { control, error } = useFormContext();
+  const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name,
@@ -29,6 +26,7 @@ const ControlledFieldArray = ({ name, label }) => {
       {fields &&
         fields.map((field, index) => (
           <Controller
+            key={field.id}
             name={`${name}[${index}].value`}
             control={control}
             defaultValue={field.value}
@@ -40,7 +38,7 @@ const ControlledFieldArray = ({ name, label }) => {
                 label={label}
                 name={name}
                 variant="filled"
-                value={value}
+                value={value || ""}
                 onChange={onChange}
                 error={!!error}
                 helperText={error ? error.message : null}

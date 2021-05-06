@@ -6,7 +6,7 @@ import { useFormContext } from "react-hook-form";
 
 const ControlledTextField = ({ name, labelm, defaultValue, label }) => {
   // think we need to remove error from the render to get this one
-  const { control, error } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <Controller
@@ -18,7 +18,7 @@ const ControlledTextField = ({ name, labelm, defaultValue, label }) => {
           label={label}
           name={name}
           variant="filled"
-          value={value}
+          value={value || ""}
           onChange={onChange}
           error={!!error}
           helperText={error ? error.message : null}
