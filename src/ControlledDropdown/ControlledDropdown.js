@@ -7,7 +7,6 @@ const ControlledDropdown = ({ label, options, name }) => {
 
   return (
     <>
-      <div>hello?</div>
       <Controller
         name={name}
         control={control}
