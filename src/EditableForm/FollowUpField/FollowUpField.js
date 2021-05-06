@@ -1,12 +1,18 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { getKey, getFollowUp } from "./FollowUpField.utils";
+import {
+  getKey,
+  getFollowUp,
+  isConditionMet,
+  hasFollowUp,
+} from "./FollowUpField.utils";
 
-export const renderFields = (fields = []) =>
+export const renderFollowUpFields = (fields = []) =>
   fields.map(({ Component, ...props }) => (
     <div key={props.name}>
       <Component key={props.name} {...props} />
-      {props?.group?.followUp && (
+
+      {hasFollowUp(props) && (
         <FollowUpField
           key={getKey(props)}
           fieldKey={getKey(props)}
@@ -21,9 +27,9 @@ const FollowUpField = ({ fieldKey, followUp }) => {
   const { condition, fields } = followUp || {};
 
   const fieldValue = watch(fieldKey);
-  const isConditionMet = fieldValue === condition;
+  const showFollowUpFields = isConditionMet(condition, fieldValue);
 
-  return isConditionMet ? renderFields(fields) : null;
+  return showFollowUpFields ? renderFollowUpFields(fields) : null;
 };
 
 export default FollowUpField;
