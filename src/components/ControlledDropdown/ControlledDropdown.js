@@ -12,16 +12,16 @@ const ControlledDropdown = ({ label, options = [], name }) => {
         id={name}
         name={name}
         control={control}
-        render={({
-          field: { onChange, value, name },
-          fieldState: { error },
-        }) => (
+        render={(
+          { onChange, onBlur, value, name, ref },
+          { invalid, isTouched, isDirty }
+        ) => (
           <TextField
             select
             onChange={onChange}
             value={value || ""}
             name={name}
-            error={!!error}
+            // error={!!error}
             SelectProps={{
               native: true,
               inputProps: {
