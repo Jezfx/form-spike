@@ -29,18 +29,18 @@ const ControlledFieldArray = ({ name, label }) => {
           name={`${name}[${index}].value`}
           control={control}
           defaultValue={field.value}
-          render={({
-            field: { onChange, value, name },
-            fieldState: { error },
-          }) => (
+          render={(
+            { onChange, onBlur, value, name, ref },
+            { invalid, isTouched, isDirty }
+          ) => (
             <TextField
               label={label}
               name={name}
               variant="filled"
               value={value || ""}
               onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
+              // error={!!error}
+              // helperText={error ? error.message : null}
             />
           )}
         />
