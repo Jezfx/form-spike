@@ -16,7 +16,10 @@ const ControlledCheckBox = ({ group, name, label }) => {
             <Controller
               name={`${name}[${index}]`}
               control={control}
-              render={({ field: { onChange }, fieldState: { error } }) => (
+              render={(
+                { onChange, onBlur, value, name, ref },
+                { invalid, isTouched, isDirty }
+              ) => (
                 <Checkbox
                   name={`${name}[${index}]`}
                   value={`${name}[${props.value}]`}

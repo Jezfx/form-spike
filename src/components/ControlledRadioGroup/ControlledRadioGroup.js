@@ -17,10 +17,10 @@ const ControlledRadioGroup = ({ group, name, label }) => {
       <Controller
         name={key}
         control={control}
-        render={({
-          field: { onChange, value, name },
-          fieldState: { error },
-        }) => (
+        render={(
+          { onChange, onBlur, value, name, ref },
+          { invalid, isTouched, isDirty }
+        ) => (
           <RadioGroup
             key={key}
             name={name}

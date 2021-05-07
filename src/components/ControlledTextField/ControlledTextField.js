@@ -12,15 +12,18 @@ const ControlledTextField = ({ name, label, defaultValue }) => {
       name={name}
       control={control}
       defaultValue={defaultValue}
-      render={({ field: { onChange, value, name }, fieldState: { error } }) => (
+      render={(
+        { onChange, onBlur, value, name, ref },
+        { invalid, isTouched, isDirty }
+      ) => (
         <TextField
           label={label}
           name={name}
           variant="filled"
           value={value || ""}
           onChange={onChange}
-          error={!!error}
-          helperText={error ? error.message : null}
+          // error={!!error}
+          // helperText={error ? error.message : null}
         />
       )}
     />
