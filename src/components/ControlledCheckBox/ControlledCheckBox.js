@@ -20,6 +20,8 @@ const ControlledCheckBox = ({ group, name, label }) => {
                 <Checkbox
                   name={`${name}[${index}]`}
                   value={`${name}[${props.value}]`}
+                  error={!!error}
+                  helperText={error ? error.message : null}
                   onChange={(e) => {
                     e.target.checked ? onChange(props.value) : onChange();
                   }}
