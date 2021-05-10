@@ -24,45 +24,40 @@ export const fields = [
     group: {
       options: [
         {
-          key: "name_same",
+          value: "foo",
           name: "checkbox_one",
           label: "check box one",
-          value: "foo",
         },
         {
-          key: "other",
-          name: "other",
           label: "Other",
+          name: "other",
           value: "other",
         },
       ],
-      followUp: {
-        condition: "other",
-        fields: [
-          {
-            label: "Other Options...",
-            Component: ControlledRadioGroup,
-            name: "level_two",
-            group: {
-              key: "level_three",
-              options: [
-                {
-                  key: "name_same",
-                  name: "isSameName",
-                  label: "Yes",
-                  value: "yes",
-                },
-                {
-                  key: "name_diff",
-                  name: "isDifferentName",
-                  label: "No",
-                  value: "no",
-                },
-              ],
-            },
+    },
+    followUp: {
+      condition: "other",
+      fields: [
+        {
+          label: "Other Options...",
+          Component: ControlledRadioGroup,
+          name: "level_two",
+          group: {
+            options: [
+              {
+                name: "isSameName",
+                label: "Yes",
+                value: "yes",
+              },
+              {
+                name: "isDifferentName",
+                label: "No",
+                value: "no",
+              },
+            ],
           },
-        ],
-      },
+        },
+      ],
     },
   },
   {
@@ -87,40 +82,40 @@ export const fields = [
           value: "no",
         },
       ],
-      followUp: {
-        condition: "no",
-        fields: [
-          {
-            label: "Other Options...",
-            Component: ControlledRadioGroup,
-            name: "level_two",
-            group: {
-              options: [
-                {
-                  name: "isSameName",
-                  label: "Yes",
-                  value: "yes",
-                },
-                {
-                  name: "isDifferentName",
-                  label: "No",
-                  value: "no",
-                },
-              ],
-              followUp: {
-                condition: "no",
-                fields: [
-                  {
-                    label: "Other Name...",
-                    Component: ControlledTextField,
-                    name: "level_three",
-                  },
-                ],
+    },
+    followUp: {
+      condition: "no",
+      fields: [
+        {
+          label: "Other Options...",
+          Component: ControlledRadioGroup,
+          name: "other_options",
+          group: {
+            options: [
+              {
+                name: "isSameName",
+                label: "Yes",
+                value: "yes",
               },
-            },
+              {
+                name: "isDifferentName",
+                label: "No",
+                value: "no",
+              },
+            ],
           },
-        ],
-      },
+          followUp: {
+            condition: "no",
+            fields: [
+              {
+                label: "Other Name...",
+                Component: ControlledTextField,
+                name: "level_three",
+              },
+            ],
+          },
+        },
+      ],
     },
   },
   {
