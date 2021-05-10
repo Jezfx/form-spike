@@ -32,8 +32,8 @@ const ControlledDropdown = ({ label, options = [], name }) => {
               },
             }}
           >
-            {options?.map(({ label, value, id }) => (
-              <option key={id} value={value}>
+            {options?.map(({ label, ...rest }, index) => (
+              <option key={index} {...rest}>
                 {label}
               </option>
             ))}

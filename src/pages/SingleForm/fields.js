@@ -5,9 +5,10 @@ import ControlledCheckBox from "../../components/ControlledCheckBox";
 import ControlledDropdown from "../../components/ControlledDropdown";
 
 const dropdownOptions = [
-  { id: 1, value: "GBP", label: "GBP" },
-  { id: 2, value: "EUR", label: "EUR" },
-  { id: 3, value: "USD", label: "USD" },
+  { label: "Please select", disabled: true },
+  { value: "GBP", label: "GBP" },
+  { value: "EUR", label: "EUR" },
+  { value: "USD", label: "USD" },
 ];
 
 export const fields = [
