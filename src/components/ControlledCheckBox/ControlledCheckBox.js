@@ -1,13 +1,20 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
+import {
+  Checkbox,
+  FormControlLabel,
+  FormControl,
+  FormHelperText,
+} from "@material-ui/core";
 
 const ControlledCheckBox = ({ group, name, label }) => {
-  const { control } = useFormContext();
+  const { control, errors } = useFormContext();
   const { key, options = [] } = group;
 
+  const error = errors[name];
+
   return (
-    <>
+    <FormControl component="fieldset" required error={!!error}>
       {options?.map((props, index) => (
         <FormControlLabel
           key={props.key}
@@ -32,7 +39,8 @@ const ControlledCheckBox = ({ group, name, label }) => {
           }
         />
       ))}
-    </>
+      <FormHelperText>{error?.message}</FormHelperText>
+    </FormControl>
   );
 };
 

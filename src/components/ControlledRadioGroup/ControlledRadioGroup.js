@@ -5,14 +5,18 @@ import {
   Radio,
   FormControlLabel,
   FormLabel,
+  FormControl,
+  FormHelperText,
 } from "@material-ui/core";
 
 const ControlledRadioGroup = ({ group, name, label }) => {
-  const { control } = useFormContext();
+  const { control, errors } = useFormContext();
   const { options } = group;
 
+  const error = errors[name];
+
   return (
-    <>
+    <FormControl component="fieldset" required error={!!error}>
       {label && <FormLabel>{label}</FormLabel>}
       <Controller
         name={name}
@@ -37,7 +41,8 @@ const ControlledRadioGroup = ({ group, name, label }) => {
           </RadioGroup>
         )}
       />
-    </>
+      <FormHelperText>{error?.message}</FormHelperText>
+    </FormControl>
   );
 };
 

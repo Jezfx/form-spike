@@ -1,15 +1,23 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { TextField, Button, ButtonGroup, Box } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  ButtonGroup,
+  Box,
+  FormControl,
+} from "@material-ui/core";
 
 import { useFormContext, useFieldArray } from "react-hook-form";
 
 const ControlledFieldArray = ({ name, label }) => {
-  const { control } = useFormContext();
+  const { control, errors } = useFormContext();
   const { fields = [], append, remove } = useFieldArray({
     control,
     name,
   });
+
+  const error = errors[name];
 
   const appendField = () => {
     append({
@@ -21,8 +29,15 @@ const ControlledFieldArray = ({ name, label }) => {
     remove(-1);
   };
 
+  const showRemoveButton = !!fields?.length;
+
+  const getError = (index) =>
+    error && error[index] && error[index]?.value?.message;
+
+  const helperText = (index, field) => getError(index) || field?.helperText;
+
   return (
-    <>
+    <FormControl component="fieldset" required error={!!error}>
       {fields.map((field, index) => (
         <Controller
           key={field.id}
@@ -39,8 +54,8 @@ const ControlledFieldArray = ({ name, label }) => {
               variant="filled"
               value={value || ""}
               onChange={onChange}
-              // error={!!error}
-              // helperText={error ? error.message : null}
+              error={error && !!error[index]}
+              helperText={helperText(index, field)}
             />
           )}
         />
@@ -48,10 +63,10 @@ const ControlledFieldArray = ({ name, label }) => {
       <Box>
         <ButtonGroup color="primary" aria-label="outlined primary button group">
           <Button onClick={appendField}>Add</Button>
-          <Button onClick={removeField}>Remove</Button>
+          {showRemoveButton && <Button onClick={removeField}>Remove</Button>}
         </ButtonGroup>
       </Box>
-    </>
+    </FormControl>
   );
 };
 

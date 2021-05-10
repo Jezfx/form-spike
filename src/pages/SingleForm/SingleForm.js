@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Typography } from "@material-ui/core";
 
+import singleFormValidationResolver from "./validationSchema";
 import ControlledForm from "../../components/ControlledForm";
 import { fields } from "./fields";
 
@@ -26,6 +27,9 @@ const defaultValues = {
 
 const SingleForm = () => {
   const methods = useForm({
+    mode: "onBlur",
+    reValidateMode: "onChange",
+    resolver: singleFormValidationResolver,
     defaultValues,
   });
 
