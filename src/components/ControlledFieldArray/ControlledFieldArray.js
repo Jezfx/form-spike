@@ -12,7 +12,7 @@ import {
 import { useFormContext, useFieldArray } from "react-hook-form";
 
 const ControlledFieldArray = ({ name, label }) => {
-  const { control, errors, watch } = useFormContext();
+  const { control, errors } = useFormContext();
   const { fields = [], append, remove } = useFieldArray({
     control,
     name,
@@ -30,7 +30,7 @@ const ControlledFieldArray = ({ name, label }) => {
     remove(-1);
   };
   return (
-    <FormControl component="fieldset" required error={!!errors}>
+    <FormControl component="fieldset" required error={!!error}>
       {fields.map((field, index) => (
         <Controller
           key={field.id}
