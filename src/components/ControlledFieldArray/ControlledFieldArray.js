@@ -20,9 +20,6 @@ const ControlledFieldArray = ({ name, label }) => {
 
   const error = errors[name];
 
-  console.log(watch(name));
-  console.log(error);
-
   const appendField = () => {
     append({
       value: "",
