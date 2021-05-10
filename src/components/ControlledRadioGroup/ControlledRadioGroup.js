@@ -9,26 +9,30 @@ import {
 
 const ControlledRadioGroup = ({ group, name, label }) => {
   const { control } = useFormContext();
-  const { key, options } = group;
+  const { options } = group;
 
   return (
     <>
       {label && <FormLabel>{label}</FormLabel>}
       <Controller
-        name={key}
+        name={name}
         control={control}
         render={(
           { onChange, onBlur, value, name, ref },
           { invalid, isTouched, isDirty }
         ) => (
           <RadioGroup
-            key={key}
+            key={name}
             name={name}
             value={value || ""}
             onChange={onChange}
           >
             {options?.map(({ ...props }) => (
-              <FormControlLabel control={<Radio />} {...props} />
+              <FormControlLabel
+                key={props.name}
+                control={<Radio />}
+                {...props}
+              />
             ))}
           </RadioGroup>
         )}

@@ -2,17 +2,17 @@ import React, { useCallback } from "react";
 import { FormProvider } from "react-hook-form";
 
 import FollowUpField from "./FollowUpField";
-import { hasFollowUp, getKey, getFollowUp } from "./EditableForm.utils";
+import { hasFollowUp, getName, getFollowUp } from "./EditableForm.utils";
 
 export const renderFields = (fields = []) =>
   fields.map(({ Component, ...props }) => (
-    <div key={props.name}>
+    <div key={getName(props)}>
       <Component {...props} />
 
       {hasFollowUp(props) && (
         <FollowUpField
-          key={getKey(props)}
-          fieldKey={getKey(props)}
+          key={`${getName(props)}-followUp`}
+          fieldName={getName(props)}
           followUp={getFollowUp(props)}
         />
       )}
