@@ -17,7 +17,7 @@ const ControlledCheckBox = ({ group, name, label }) => {
     <FormControl component="fieldset" required error={!!error}>
       {options?.map((props, index) => (
         <FormControlLabel
-          key={props.key}
+          key={`${name}[${index}]`}
           label={props.label}
           control={
             <Controller
