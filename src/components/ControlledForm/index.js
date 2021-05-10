@@ -1,1 +1,1 @@
-export { default } from "./EditableForm";
+export { default } from "./ControlledForm";

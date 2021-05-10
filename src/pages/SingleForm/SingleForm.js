@@ -2,8 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Typography } from "@material-ui/core";
 
-import EditableForm from "../../components/EditableForm";
 import singleFormValidationResolver from "./validationSchema";
+import ControlledForm from "../../components/ControlledForm";
 import { fields } from "./fields";
 
 const renderButtons = () => (
@@ -40,7 +40,7 @@ const SingleForm = () => {
     <>
       <Typography variant="h6">Form Title</Typography>
       <Typography variant="body2">Contextual information</Typography>
-      <EditableForm
+      <ControlledForm
         methods={methods}
         onSubmit={onSubmit}
         fields={fields}

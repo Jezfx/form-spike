@@ -11,7 +11,7 @@ import {
 
 const ControlledRadioGroup = ({ group, name, label }) => {
   const { control, errors } = useFormContext();
-  const { key, options } = group;
+  const { options } = group;
 
   const error = errors[name];
 
@@ -19,20 +19,24 @@ const ControlledRadioGroup = ({ group, name, label }) => {
     <FormControl component="fieldset" required error={!!error}>
       {label && <FormLabel>{label}</FormLabel>}
       <Controller
-        name={key}
+        name={name}
         control={control}
         render={(
           { onChange, onBlur, value, name, ref },
           { invalid, isTouched, isDirty }
         ) => (
           <RadioGroup
-            key={key}
+            key={name}
             name={name}
             value={value || ""}
             onChange={onChange}
           >
             {options?.map(({ ...props }) => (
-              <FormControlLabel control={<Radio />} {...props} />
+              <FormControlLabel
+                key={props.name}
+                control={<Radio />}
+                {...props}
+              />
             ))}
           </RadioGroup>
         )}
