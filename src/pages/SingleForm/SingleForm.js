@@ -1,10 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Typography } from "@material-ui/core";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import EditableForm from "../../components/EditableForm";
-import validationSchema from "./validationSchema";
+import singleFormValidationResolver from "./validationSchema";
 import { fields } from "./fields";
 
 const renderButtons = () => (
@@ -30,7 +29,7 @@ const SingleForm = () => {
   const methods = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
-    resolver: yupResolver(validationSchema),
+    resolver: singleFormValidationResolver,
     defaultValues,
   });
 

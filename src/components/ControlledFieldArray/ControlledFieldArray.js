@@ -6,7 +6,6 @@ import {
   ButtonGroup,
   Box,
   FormControl,
-  FormHelperText,
 } from "@material-ui/core";
 
 import { useFormContext, useFieldArray } from "react-hook-form";
@@ -29,6 +28,14 @@ const ControlledFieldArray = ({ name, label }) => {
   const removeField = () => {
     remove(-1);
   };
+
+  const showRemoveButton = !!fields?.length;
+
+  const getError = (index) =>
+    error && error[index] && error[index]?.value?.message;
+
+  const helperText = (index, field) => getError(index) || field?.helperText;
+
   return (
     <FormControl component="fieldset" required error={!!error}>
       {fields.map((field, index) => (
@@ -48,9 +55,7 @@ const ControlledFieldArray = ({ name, label }) => {
               value={value || ""}
               onChange={onChange}
               error={error && !!error[index]}
-              helperText={
-                error && error[index] ? error[index]?.value?.message : null
-              }
+              helperText={helperText(index, field)}
             />
           )}
         />
@@ -58,7 +63,7 @@ const ControlledFieldArray = ({ name, label }) => {
       <Box>
         <ButtonGroup color="primary" aria-label="outlined primary button group">
           <Button onClick={appendField}>Add</Button>
-          {fields?.length >= 1 && <Button onClick={removeField}>Remove</Button>}
+          {showRemoveButton && <Button onClick={removeField}>Remove</Button>}
         </ButtonGroup>
       </Box>
     </FormControl>
