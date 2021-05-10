@@ -5,7 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import { useFormContext } from "react-hook-form";
 
 const ControlledTextField = ({ name, label, defaultValue }) => {
-  const { control } = useFormContext();
+  const { control, errors } = useFormContext();
+
+  const error = errors[name];
 
   return (
     <Controller
@@ -18,12 +20,12 @@ const ControlledTextField = ({ name, label, defaultValue }) => {
       ) => (
         <TextField
           label={label}
+          error={!!error}
           name={name}
           variant="filled"
           value={value || ""}
           onChange={onChange}
-          // error={!!error}
-          // helperText={error ? error.message : null}
+          helperText={error ? error.message : null}
         />
       )}
     />

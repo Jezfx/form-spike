@@ -3,7 +3,9 @@ import { TextField, FormLabel, FormControl } from "@material-ui/core";
 import { useFormContext, Controller } from "react-hook-form";
 
 const ControlledDropdown = ({ label, options = [], name }) => {
-  const { control } = useFormContext();
+  const { control, errors } = useFormContext();
+
+  const error = errors[name];
 
   return (
     <FormControl>
@@ -21,7 +23,8 @@ const ControlledDropdown = ({ label, options = [], name }) => {
             onChange={onChange}
             value={value || ""}
             name={name}
-            // error={!!error}
+            error={!!error}
+            helperText={error ? error.message : null}
             SelectProps={{
               native: true,
               inputProps: {
