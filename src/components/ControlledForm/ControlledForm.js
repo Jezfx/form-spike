@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { FormProvider } from "react-hook-form";
 
 import FollowUpField from "./FollowUpField";
-import { hasFollowUp, getName, getFollowUp } from "./EditableForm.utils";
+import { hasFollowUp, getName, getFollowUp } from "./ControlledForm.utils";
 
 export const renderFields = (fields = []) =>
   fields.map(({ Component, ...props }) => (
@@ -19,7 +19,7 @@ export const renderFields = (fields = []) =>
     </div>
   ));
 
-const EditableForm = ({ onSubmit, buttons, methods, fields }) => {
+const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
   const { handleSubmit } = methods;
   const renderFormFields = useCallback(() => renderFields(fields), [fields]);
 
@@ -33,8 +33,8 @@ const EditableForm = ({ onSubmit, buttons, methods, fields }) => {
   );
 };
 
-EditableForm.defaultProps = {
+ControlledForm.defaultProps = {
   fields: [],
 };
 
-export default EditableForm;
+export default ControlledForm;
