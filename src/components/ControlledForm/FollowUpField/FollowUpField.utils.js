@@ -1,8 +1,7 @@
 import { isNotEmpty } from "../../../utils";
 import { flow, get, isString, isArray, includes, eq } from "lodash/fp";
 
-export const getGroupName = get("group.name");
-export const getFollowUp = get("group.followUp");
+export const getFollowUp = get("followUp");
 export const hasFollowUp = flow([getFollowUp, isNotEmpty]);
 
 const isMatchingString = (condition, value) =>
