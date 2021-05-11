@@ -19,14 +19,7 @@ exports[`ControlledDropdown should match snapshot 1`] = `
           aria-invalid="false"
           class="MuiSelect-root MuiSelect-select MuiInputBase-input MuiInput-input"
           name=""
-        >
-          <option
-            disabled=""
-            value="none"
-          >
-            Please Select
-          </option>
-        </select>
+        />
         <svg
           aria-hidden="true"
           class="MuiSvgIcon-root MuiSelect-icon"

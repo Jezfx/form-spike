@@ -33,11 +33,8 @@ const ControlledDropdown = ({ label, options = [], name }) => {
               },
             }}
           >
-            <option value="none" disabled>
-              Please Select
-            </option>
-            {options?.map(({ label, value, id }) => (
-              <option key={id} value={value}>
+            {options?.map(({ label, ...rest }, index) => (
+              <option key={index} {...rest}>
                 {label}
               </option>
             ))}

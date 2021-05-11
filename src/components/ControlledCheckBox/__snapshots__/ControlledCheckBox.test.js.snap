@@ -6,7 +6,7 @@ exports[`ControlledCheckBox should match snapshot 1`] = `
     class="MuiFormControl-root"
   >
     <p
-      class="MuiFormHelperText-root Mui-required"
+      class="MuiFormHelperText-root"
     />
   </fieldset>
 </DocumentFragment>

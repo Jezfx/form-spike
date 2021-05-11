@@ -1,10 +1,10 @@
 import React from "react";
 import ControlledRadioGroup from "./ControlledRadioGroup";
-import { renderWithReactHookForm } from "../../test-utils";
+import { renderWithProviders } from "../../test-utils";
 
 describe("ControlledRadioGroup", () => {
   it("should match snapshot", () => {
-    const { asFragment } = renderWithReactHookForm(
+    const { asFragment } = renderWithProviders(
       <ControlledRadioGroup options={[]} name="" label="" />
     );
 

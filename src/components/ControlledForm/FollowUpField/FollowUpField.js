@@ -1,20 +1,19 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import {
-  getGroupName,
   getFollowUp,
   isConditionMet,
   hasFollowUp,
 } from "./FollowUpField.utils";
 
 export const renderFollowUpFields = (fields = []) =>
-  fields.map(({ Component, ...props }) => (
-    <div key={props?.name}>
+  fields.map(({ Component, ...props }, index) => (
+    <div key={props?.name || index}>
       <Component key={props?.name} {...props} />
 
       {hasFollowUp(props) && (
         <FollowUpField
-          key={`${props?.name}(props)}-followUp`}
+          key={`${props?.name}-followUp`}
           fieldName={props?.name}
           followUp={getFollowUp(props)}
         />
