@@ -5,7 +5,7 @@ import { renderWithProviders } from "../../test-utils";
 describe("ControlledRadioGroup", () => {
   it("should match snapshot", () => {
     const { asFragment } = renderWithProviders(
-      <ControlledRadioGroup options={[]} name="" label="" />
+      <ControlledRadioGroup options={[]} name="foo" label="Foo" />
     );
 
     expect(asFragment()).toMatchSnapshot();
