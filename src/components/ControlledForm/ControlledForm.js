@@ -22,12 +22,15 @@ export const renderFields = (fields = []) =>
 const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
   const { handleSubmit } = methods;
   const renderFormFields = useMemo(() => renderFields(fields), [fields]);
+  const renderButtons = useMemo(() => (!!buttons ? buttons() : null), [
+    buttons,
+  ]);
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderFormFields}
-        {buttons()}
+        {renderButtons}
       </form>
     </FormProvider>
   );
