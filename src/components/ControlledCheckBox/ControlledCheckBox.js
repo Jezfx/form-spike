@@ -10,10 +10,8 @@ import {
   FormGroup,
 } from "@material-ui/core";
 
-const ControlledCheckBox = ({ group, name, label }) => {
+const ControlledCheckBox = ({ name, label, options = [] }) => {
   const { control, errors } = useFormContext();
-  const { options = [] } = group;
-
   const error = errors[name];
 
   return (
@@ -28,10 +26,7 @@ const ControlledCheckBox = ({ group, name, label }) => {
               <Controller
                 name={`${name}[${index}]`}
                 control={control}
-                render={(
-                  { onChange, onBlur, value, name, ref },
-                  { invalid, isTouched, isDirty }
-                ) => (
+                render={({ onChange, name }) => (
                   <Checkbox
                     name={`${name}[${index}]`}
                     value={`${name}[${props.value}]`}

@@ -10,14 +10,12 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
-const ControlledRadioGroup = ({ group, name, label }) => {
+const ControlledRadioGroup = ({ name, label, options = [] }) => {
   const { control, errors } = useFormContext();
-  const { options } = group;
-
   const error = errors[name];
 
   return (
-    <FormControl component="fieldset" required error={!!error}>
+    <FormControl component="fieldset" error={!!error}>
       {label && <FormLabel>{label}</FormLabel>}
       <Controller
         name={name}
