@@ -3,9 +3,9 @@ import ControlledTextField from "./ControlledTextField";
 import { renderWithProviders } from "../../test-utils";
 
 describe("ControlledTextField", () => {
-  it("should match snapshot", () => {
+  it("should render correctly", () => {
     const { asFragment } = renderWithProviders(
-      <ControlledTextField name="" label="" />
+      <ControlledTextField name="foo" label="Foo" />
     );
 
     expect(asFragment()).toMatchSnapshot();

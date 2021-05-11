@@ -5,13 +5,19 @@ exports[`ControlledTextField should match snapshot 1`] = `
   <div
     class="MuiFormControl-root MuiTextField-root"
   >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+      data-shrink="false"
+    >
+      Foo
+    </label>
     <div
       class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
     >
       <input
         aria-invalid="false"
         class="MuiInputBase-input MuiFilledInput-input"
-        name=""
+        name="foo"
         type="text"
         value=""
       />

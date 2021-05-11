@@ -3,9 +3,13 @@ import ControlledDropdown from "./ControlledDropdown";
 import { renderWithProviders } from "../../test-utils";
 
 describe("ControlledDropdown", () => {
-  it("should match snapshot", () => {
+  it("should render correctly", () => {
+    const options = [
+      { name: "bar", label: "Bar" },
+      { name: "baz", label: "Baz" },
+    ];
     const { asFragment } = renderWithProviders(
-      <ControlledDropdown options={[]} name="" label="" />
+      <ControlledDropdown options={options} name="foo" label="Foo" />
     );
 
     expect(asFragment()).toMatchSnapshot();

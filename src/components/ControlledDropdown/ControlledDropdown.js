@@ -14,11 +14,9 @@ const ControlledDropdown = ({ label, options = [], name }) => {
       <Controller
         id={name}
         name={name}
+        defaultValue={false}
         control={control}
-        render={(
-          { onChange, onBlur, value, name, ref },
-          { invalid, isTouched, isDirty }
-        ) => (
+        render={({ onChange, value = "", name }) => (
           <TextField
             select
             onChange={onChange}
@@ -50,16 +48,14 @@ ControlledDropdown.propTypes = {
   name: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
       value: PropTypes.string,
       label: PropTypes.string,
+      name: PropTypes.string,
     })
   ),
 };
 
 ControlledDropdown.defaultProps = {
-  label: "",
-  name: "",
   options: [],
 };
 
