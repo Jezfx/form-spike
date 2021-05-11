@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useFormContext } from "react-hook-form";
 import { getFollowUp, hasFollowUp } from "./FollowUpField.utils";
 
@@ -22,7 +22,12 @@ const FollowUpField = ({ fieldName, followUp }) => {
   const { condition, fields } = followUp || {};
   const fieldValue = watch(fieldName);
 
-  return condition(fieldValue) ? renderFollowUpFields(fields) : null;
+  const isConditionaMet = useMemo(() => condition(fieldValue), [
+    condition,
+    fieldValue,
+  ]);
+
+  return isConditionaMet ? renderFollowUpFields(fields) : null;
 };
 
 export default FollowUpField;
