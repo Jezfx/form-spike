@@ -1,7 +1,7 @@
 import React from "react";
 import ControlledFieldArray from "./ControlledFieldArray";
 import { renderWithProviders } from "../../test-utils";
-import { wait, fireEvent, cleanup } from "@testing-library/react";
+import { waitFor, fireEvent, cleanup } from "@testing-library/react";
 
 describe("ControlledFieldArray", () => {
   afterEach(cleanup);
@@ -43,7 +43,7 @@ describe("ControlledFieldArray", () => {
     const addButton = queryByText("Add");
     fireEvent.click(addButton);
 
-    await wait(() => {
+    await waitFor(() => {
       const removeButton = queryByText("Remove");
       expect(removeButton).toBeInTheDocument();
     });

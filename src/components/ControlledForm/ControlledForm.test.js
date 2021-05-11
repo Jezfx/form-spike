@@ -1,16 +1,21 @@
 import React from "react";
 import {
-  wait,
+  waitFor,
   fireEvent,
   cleanup,
   render,
   screen,
 } from "@testing-library/react";
 import { Button } from "@material-ui/core";
+import { useForm } from "react-hook-form";
 
 import ControlledForm from "./ControlledForm";
-import { withForm } from "../../test-utils";
 import { defaultFields, followUpFields } from "./mocks";
+
+const withFormWrapper = (Component) => (componentProps, defaultValues = {}) => {
+  const methods = useForm({ defaultValues });
+  return <Component methods={methods} {...componentProps} />;
+};
 
 describe("Controlled Form", () => {
   afterEach(cleanup);
@@ -20,8 +25,8 @@ describe("Controlled Form", () => {
     onSubmit: jest.fn(),
   };
 
-  const CompWithForm = withForm(ControlledForm);
-  it("matches snapshot", () => {
+  const CompWithForm = withFormWrapper(ControlledForm);
+  it("should render correctly", () => {
     const { asFragment } = render(
       <CompWithForm fields={defaultFields} {...props} />
     );
@@ -29,20 +34,19 @@ describe("Controlled Form", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("calls on submit", async () => {
+  it("should call onsubmit when submit button is clicked", async () => {
     render(<CompWithForm fields={defaultFields} {...props} />);
 
     const button = screen.getByText("Submit");
     fireEvent.click(button);
 
-    await wait(() => {
+    await waitFor(() => {
       expect(props.onSubmit).toHaveBeenCalled();
     });
   });
 
-  it("renders followups when condition is true", async () => {
+  it("should render follow up fields when condition is true", () => {
     render(<CompWithForm fields={followUpFields} {...props} />);
-
     const followUp = screen.getByLabelText("Follow up");
 
     expect(followUp).toBeInTheDocument();
