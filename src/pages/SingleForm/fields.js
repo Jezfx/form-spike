@@ -4,6 +4,8 @@ import ControlledFieldArray from "../../components/ControlledFieldArray";
 import ControlledCheckBox from "../../components/ControlledCheckBox";
 import ControlledDropdown from "../../components/ControlledDropdown";
 
+import { isEqualToNo, isEqualToYes, isOtherIncluded } from "./SingleForm.utils";
+
 const dropdownOptions = [
   { label: "Please select", disabled: true },
   { value: "GBP", label: "GBP" },
@@ -36,7 +38,7 @@ export const fields = [
       ],
     },
     followUp: {
-      condition: "other",
+      condition: isOtherIncluded,
       fields: [
         {
           label: "Other Options...",
@@ -84,7 +86,7 @@ export const fields = [
       ],
     },
     followUp: {
-      condition: "no",
+      condition: isEqualToYes,
       fields: [
         {
           label: "Other Options...",
@@ -105,7 +107,7 @@ export const fields = [
             ],
           },
           followUp: {
-            condition: "no",
+            condition: isEqualToNo,
             fields: [
               {
                 label: "Other Name...",
