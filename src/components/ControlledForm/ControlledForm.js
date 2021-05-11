@@ -2,7 +2,12 @@ import React, { useMemo } from "react";
 import { FormProvider } from "react-hook-form";
 
 import FollowUpField from "./FollowUpField";
-import { hasFollowUp, getName, getFollowUp } from "./ControlledForm.utils";
+import {
+  hasFollowUp,
+  getName,
+  getFollowUp,
+  formatValues,
+} from "./ControlledForm.utils";
 
 export const renderFields = (fields = []) =>
   fields.map(({ Component, ...props }, index) => (
@@ -28,7 +33,7 @@ const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit((values) => onSubmit(formatValues(values)))}>
         {renderFormFields}
         {renderButtons}
       </form>
