@@ -23,20 +23,18 @@ export const fields = [
     Component: ControlledCheckBox,
     name: "checkboxes",
     label: "CheckBoxes",
-    group: {
-      options: [
-        {
-          value: "foo",
-          name: "checkbox_one",
-          label: "check box one",
-        },
-        {
-          label: "Other",
-          name: "other",
-          value: "other",
-        },
-      ],
-    },
+    options: [
+      {
+        value: "foo",
+        name: "checkbox_one",
+        label: "check box one",
+      },
+      {
+        label: "Other",
+        name: "other",
+        value: "other",
+      },
+    ],
     followUp: {
       condition: isOtherIncluded,
       fields: [
@@ -44,20 +42,18 @@ export const fields = [
           label: "Other Options...",
           Component: ControlledRadioGroup,
           name: "level_two",
-          group: {
-            options: [
-              {
-                name: "isSameName",
-                label: "Yes",
-                value: "yes",
-              },
-              {
-                name: "isDifferentName",
-                label: "No",
-                value: "no",
-              },
-            ],
-          },
+          options: [
+            {
+              name: "isSameName",
+              label: "Yes",
+              value: "yes",
+            },
+            {
+              name: "isDifferentName",
+              label: "No",
+              value: "no",
+            },
+          ],
         },
       ],
     },
@@ -71,20 +67,18 @@ export const fields = [
     Component: ControlledRadioGroup,
     name: "level_one",
     label: "Level one (check yes to see level 2)",
-    group: {
-      options: [
-        {
-          name: "isSameName",
-          label: "Yes",
-          value: "yes",
-        },
-        {
-          name: "isDifferentName",
-          label: "No",
-          value: "no",
-        },
-      ],
-    },
+    options: [
+      {
+        name: "isSameName",
+        label: "Yes",
+        value: "yes",
+      },
+      {
+        name: "isDifferentName",
+        label: "No",
+        value: "no",
+      },
+    ],
     followUp: {
       condition: isEqualToYes,
       fields: [
@@ -92,20 +86,18 @@ export const fields = [
           label: "Other Options...",
           Component: ControlledRadioGroup,
           name: "other_options",
-          group: {
-            options: [
-              {
-                name: "isSameName",
-                label: "Yes",
-                value: "yes",
-              },
-              {
-                name: "isDifferentName",
-                label: "No",
-                value: "no",
-              },
-            ],
-          },
+          options: [
+            {
+              name: "isSameName",
+              label: "Yes",
+              value: "yes",
+            },
+            {
+              name: "isDifferentName",
+              label: "No",
+              value: "no",
+            },
+          ],
           followUp: {
             condition: isEqualToNo,
             fields: [
