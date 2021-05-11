@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useMemo, useCallback } from "react";
 import { FormProvider } from "react-hook-form";
 
 import FollowUpField from "./FollowUpField";
@@ -9,24 +9,25 @@ export const renderFields = (fields = []) =>
     <div key={getName(props) || index}>
       <Component {...props} />
 
-      {hasFollowUp(props) && (
-        <FollowUpField
-          key={`${getName(props)}-followUp`}
-          fieldName={getName(props)}
-          followUp={getFollowUp(props)}
-        />
-      )}
-    </div>
-  ));
+          {hasFollowUp(props) && (
+            <FollowUpField
+              key={`${getName(props)}-followUp`}
+              fieldName={getName(props)}
+              followUp={getFollowUp(props)}
+            />
+          )}
+        </div>
+      )
+  );
 
 const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
   const { handleSubmit } = methods;
-  const renderFormFields = useCallback(() => renderFields(fields), [fields]);
+  const renderFormFields = useMemo(() => renderFields(fields), [fields]);
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {renderFormFields()}
+        {renderFormFields}
         {buttons()}
       </form>
     </FormProvider>
