@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { TextField, FormLabel, FormControl } from "@material-ui/core";
 import { useFormContext, Controller } from "react-hook-form";
 
@@ -45,6 +46,24 @@ const ControlledDropdown = ({ label, options = [], name }) => {
       />
     </FormControl>
   );
+};
+
+ControlledDropdown.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string,
+      label: PropTypes.string,
+    })
+  ),
+};
+
+ControlledDropdown.defaultProps = {
+  label: "",
+  name: "",
+  options: [],
 };
 
 export default ControlledDropdown;

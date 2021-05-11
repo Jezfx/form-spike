@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   Checkbox,
@@ -42,6 +43,22 @@ const ControlledCheckBox = ({ group, name, label }) => {
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );
+};
+
+ControlledCheckBox.propTypes = {
+  group: PropTypes.shape({
+    key: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.object),
+  }),
+  name: PropTypes.string,
+};
+
+ControlledCheckBox.defaultProps = {
+  group: {
+    key: "",
+    options: [],
+  },
+  name: "",
 };
 
 export default ControlledCheckBox;

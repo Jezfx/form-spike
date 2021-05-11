@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   RadioGroup,
@@ -44,6 +45,22 @@ const ControlledRadioGroup = ({ group, name, label }) => {
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );
+};
+
+ControlledRadioGroup.propTypes = {
+  group: PropTypes.shape({
+    key: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.object),
+  }),
+  name: PropTypes.string,
+};
+
+ControlledRadioGroup.defaultProps = {
+  group: {
+    key: "",
+    options: [],
+  },
+  name: "",
 };
 
 export default ControlledRadioGroup;
