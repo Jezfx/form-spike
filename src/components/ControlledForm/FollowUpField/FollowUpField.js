@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useFormContext } from "react-hook-form";
 import { getFollowUp, hasFollowUp } from "./FollowUpField.utils";
 

@@ -1,13 +1,15 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { FormProvider } from "react-hook-form";
 
 import FollowUpField from "./FollowUpField";
 import { hasFollowUp, getName, getFollowUp } from "./ControlledForm.utils";
 
 export const renderFields = (fields = []) =>
-  fields.map(({ Component, ...props }, index) => (
-    <div key={getName(props) || index}>
-      <Component {...props} />
+  fields.map(
+    ({ Component, ...props }, index) =>
+      console.log("here") || (
+        <div key={getName(props) || index}>
+          <Component {...props} />
 
           {hasFollowUp(props) && (
             <FollowUpField
