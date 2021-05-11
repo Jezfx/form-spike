@@ -6,6 +6,10 @@ export const renderWithProviders = (ui, { defaultValues = {} } = {}) => {
     const methods = useForm({});
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
-
   return render(ui, { wrapper: Wrapper });
+};
+
+export const withForm = (Component) => (componentProps) => {
+  const methods = useForm({});
+  return <Component methods={methods} {...componentProps} />;
 };

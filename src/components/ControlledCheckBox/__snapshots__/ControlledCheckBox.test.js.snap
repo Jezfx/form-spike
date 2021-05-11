@@ -5,6 +5,12 @@ exports[`ControlledCheckBox should match snapshot 1`] = `
   <fieldset
     class="MuiFormControl-root"
   >
+    <legend
+      class="MuiFormLabel-root"
+    />
+    <div
+      class="MuiFormGroup-root"
+    />
     <p
       class="MuiFormHelperText-root"
     />
