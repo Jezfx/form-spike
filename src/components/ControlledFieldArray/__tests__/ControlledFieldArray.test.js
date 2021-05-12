@@ -1,6 +1,6 @@
 import React from "react";
-import ControlledFieldArray from "./ControlledFieldArray";
-import { renderWithProviders } from "../../test-utils";
+import ControlledFieldArray from "../";
+import { renderWithProviders } from "../../../test-utils";
 import { waitFor, fireEvent, cleanup } from "@testing-library/react";
 
 describe("ControlledFieldArray", () => {

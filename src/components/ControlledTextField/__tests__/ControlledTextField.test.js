@@ -1,6 +1,6 @@
 import React from "react";
-import ControlledTextField from "./ControlledTextField";
-import { renderWithProviders } from "../../test-utils";
+import ControlledTextField from "../";
+import { renderWithProviders } from "../../../test-utils";
 
 describe("ControlledTextField", () => {
   it("should render correctly", () => {

@@ -1,5 +1,5 @@
-import ControlledTextField from "../../ControlledTextField";
-import ControlledRadioGroup from "../../ControlledRadioGroup";
+import ControlledTextField from "../ControlledTextField";
+import ControlledRadioGroup from "../ControlledRadioGroup";
 
 export const defaultFields = [
   {

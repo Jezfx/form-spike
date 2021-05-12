@@ -1,6 +1,6 @@
 import React from "react";
-import ControlledRadioGroup from "./ControlledRadioGroup";
-import { renderWithProviders } from "../../test-utils";
+import ControlledRadioGroup from "../";
+import { renderWithProviders } from "../../../test-utils";
 
 describe("ControlledRadioGroup", () => {
   it("should match snapshot", () => {

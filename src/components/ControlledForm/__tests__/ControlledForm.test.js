@@ -9,8 +9,8 @@ import {
 import { Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 
-import ControlledForm from "./ControlledForm";
-import { defaultFields, followUpFields } from "./mocks";
+import ControlledForm from "../";
+import { defaultFields, followUpFields } from "../ControlledForm.mock";
 
 const withFormWrapper = (Component) => (componentProps, defaultValues = {}) => {
   const methods = useForm({ defaultValues });

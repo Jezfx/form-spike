@@ -1,6 +1,6 @@
 import React from "react";
-import ControlledDropdown from "./ControlledDropdown";
-import { renderWithProviders } from "../../test-utils";
+import ControlledDropdown from "../";
+import { renderWithProviders } from "../../../test-utils";
 
 describe("ControlledDropdown", () => {
   it("should render correctly", () => {
