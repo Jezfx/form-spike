@@ -6,7 +6,6 @@ import { useFormContext } from "react-hook-form";
 
 const ControlledTextField = ({ name, label, defaultValue, ...rest }) => {
   const { control, errors } = useFormContext();
-
   const error = errors[name];
 
   return (
@@ -14,16 +13,13 @@ const ControlledTextField = ({ name, label, defaultValue, ...rest }) => {
       name={name}
       control={control}
       defaultValue={defaultValue}
-      render={(
-        { onChange, onBlur, value, name, ref },
-        { invalid, isTouched, isDirty }
-      ) => (
+      render={({ onChange, value = "", name }) => (
         <TextField
           label={label}
           error={!!error}
           name={name}
           variant="filled"
-          value={value || ""}
+          value={value}
           onChange={onChange}
           helperText={error ? error.message : null}
           {...rest}
@@ -31,6 +27,10 @@ const ControlledTextField = ({ name, label, defaultValue, ...rest }) => {
       )}
     />
   );
+};
+
+ControlledTextField.defaultProps = {
+  defaultValue: "",
 };
 
 export default ControlledTextField;

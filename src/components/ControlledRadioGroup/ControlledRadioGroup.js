@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   RadioGroup,
@@ -9,7 +10,7 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
-const ControlledRadioGroup = ({ name, label, options = [] }) => {
+const ControlledRadioGroup = ({ defaultValue, name, label, options = [] }) => {
   const { control, errors } = useFormContext();
   const error = errors[name];
 
@@ -19,14 +20,13 @@ const ControlledRadioGroup = ({ name, label, options = [] }) => {
       <Controller
         name={name}
         control={control}
-        render={(
-          { onChange, onBlur, value, name, ref },
-          { invalid, isTouched, isDirty }
-        ) => (
+        defaultValue={false}
+        render={({ onChange, value = "", name }) => (
           <RadioGroup
             key={name}
             name={name}
-            value={value || ""}
+            defaultValue={defaultValue}
+            value={value}
             onChange={onChange}
           >
             {options?.map(({ ...props }) => (
@@ -42,6 +42,15 @@ const ControlledRadioGroup = ({ name, label, options = [] }) => {
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );
+};
+
+ControlledRadioGroup.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object),
+  name: PropTypes.string,
+};
+
+ControlledRadioGroup.defaultProps = {
+  options: [],
 };
 
 export default ControlledRadioGroup;

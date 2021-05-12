@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { TextField, FormLabel, FormControl } from "@material-ui/core";
 import { useFormContext, Controller } from "react-hook-form";
 
@@ -13,11 +14,9 @@ const ControlledDropdown = ({ label, options = [], name }) => {
       <Controller
         id={name}
         name={name}
+        defaultValue={false}
         control={control}
-        render={(
-          { onChange, onBlur, value, name, ref },
-          { invalid, isTouched, isDirty }
-        ) => (
+        render={({ onChange, value = "", name }) => (
           <TextField
             select
             onChange={onChange}
@@ -42,6 +41,22 @@ const ControlledDropdown = ({ label, options = [], name }) => {
       />
     </FormControl>
   );
+};
+
+ControlledDropdown.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string,
+      name: PropTypes.string,
+    })
+  ),
+};
+
+ControlledDropdown.defaultProps = {
+  options: [],
 };
 
 export default ControlledDropdown;

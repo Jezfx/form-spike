@@ -37,7 +37,7 @@ const ControlledFieldArray = ({ name, label }) => {
   const helperText = (index, field) => getError(index) || field?.helperText;
 
   return (
-    <FormControl component="fieldset" required error={!!error}>
+    <FormControl component="fieldset" error={!!error}>
       {fields.map((field, index) => (
         <Controller
           key={field.id}
