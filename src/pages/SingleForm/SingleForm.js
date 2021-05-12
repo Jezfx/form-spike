@@ -13,6 +13,7 @@ const renderButtons = () => (
 );
 
 const defaultValues = {
+  checkboxes: ["foo"],
   import_countries: [
     {
       value: "spain",

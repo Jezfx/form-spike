@@ -27,7 +27,7 @@ export const fields = [
       {
         value: "foo",
         name: "checkbox_one",
-        label: "check box one",
+        label: "Foo",
       },
       {
         label: "Other",
