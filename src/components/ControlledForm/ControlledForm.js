@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { FormProvider } from "react-hook-form";
+import { Grid } from "@material-ui/core";
 
 import FollowUpField from "./FollowUpField";
 import {
@@ -9,9 +10,9 @@ import {
   formatValues,
 } from "./ControlledForm.utils";
 
-export const renderFields = (fields = []) =>
-  fields.map(({ Component, ...props }, index) => (
-    <div key={getName(props) || index}>
+export const renderFields = (fields) =>
+  fields.map(({ Component, ...props }, i) => (
+    <Grid key={getName(props) || i} item>
       <Component {...props} />
 
       {hasFollowUp(props) && (
@@ -21,7 +22,7 @@ export const renderFields = (fields = []) =>
           followUp={getFollowUp(props)}
         />
       )}
-    </div>
+    </Grid>
   ));
 
 const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
@@ -34,8 +35,10 @@ const ControlledForm = ({ onSubmit, buttons, methods, fields }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit((values) => onSubmit(formatValues(values)))}>
-        {renderFormFields}
-        {renderButtons}
+        <Grid spacing={3} direction="column" container>
+          {renderFormFields}
+          {renderButtons}
+        </Grid>
       </form>
     </FormProvider>
   );
