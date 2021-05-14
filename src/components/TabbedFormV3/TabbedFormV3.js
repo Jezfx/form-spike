@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FormProvider } from "react-hook-form";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Text } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
@@ -46,16 +46,17 @@ const TabPanel = (props) => {
   );
 };
 
-const TabbedForm = ({
-  values,
+const TabbedFormV3 = ({
   fields,
+  model,
   methods,
   onSubmit,
   buttons,
+  values,
   onAppendField,
   renderTabLabelCallback,
 }) => {
-  const { handleSubmit } = methods;
+  const { handleSubmit, watch } = methods;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -85,15 +86,16 @@ const TabbedForm = ({
           </Tabs>
 
           {values.map((field, index) => (
-            <TabPanel value={value} index={index} key={index}>
-              {fields.map(({ Component, ...props }) => (
+            <TabPanel value={value} index={index} key={field.id}>
+              {model.map(({ Component, ...props }) => (
                 <div key={props.name}>
                   <Component
                     {...props}
-                    name={`contacts[${index}].${props.name}`}
+                    name={`suppliers[${index}].${props.name}`}
                   />
                 </div>
               ))}
+              {buttons()}
             </TabPanel>
           ))}
         </div>
@@ -101,10 +103,9 @@ const TabbedForm = ({
           Add new
         </Button>
         <br />
-        {buttons()}
       </form>
     </FormProvider>
   );
 };
 
-export default TabbedForm;
+export default TabbedFormV3;

@@ -7,6 +7,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 
+import ControlledForm from "../ControlledForm";
+
 const a11yProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
@@ -47,7 +49,7 @@ const TabPanel = (props) => {
 };
 
 const TabbedForm = ({
-  values,
+  model,
   fields,
   methods,
   onSubmit,
@@ -64,46 +66,44 @@ const TabbedForm = ({
   };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={classes.root}>
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs"
-            className={classes.tabs}
-          >
-            {values.map((field, index) => (
-              <Tab
-                key={index}
-                {...a11yProps(index)}
-                label={renderTabLabelCallback(field)}
-              />
-            ))}
-          </Tabs>
-
-          {values.map((field, index) => (
-            <TabPanel value={value} index={index} key={index}>
-              {fields.map(({ Component, ...props }) => (
-                <div key={props.name}>
-                  <Component
-                    {...props}
-                    name={`contacts[${index}].${props.name}`}
-                  />
-                </div>
-              ))}
-            </TabPanel>
+    // <FormProvider {...methods}>
+    //   <form onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <div className={classes.root}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs"
+          className={classes.tabs}
+        >
+          {fields.map((field, index) => (
+            <Tab
+              key={index}
+              {...a11yProps(index)}
+              label={renderTabLabelCallback(field)}
+            />
           ))}
-        </div>
-        <Button onClick={onAppendField} color="secondary" variant="outlined">
-          Add new
-        </Button>
-        <br />
-        {buttons()}
-      </form>
-    </FormProvider>
+        </Tabs>
+
+        {fields.map((field, index) => (
+          <TabPanel value={value} index={index} key={index}>
+            <ControlledForm
+              methods={methods}
+              onSubmit={onSubmit}
+              fields={model}
+              buttons={buttons}
+            />
+          </TabPanel>
+        ))}
+      </div>
+      <Button onClick={onAppendField} color="secondary" variant="outlined">
+        Add new
+      </Button>
+    </>
+    //   </form>
+    // </FormProvider>
   );
 };
 

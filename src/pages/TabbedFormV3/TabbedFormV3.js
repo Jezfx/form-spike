@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Button } from "@material-ui/core";
 import { merge } from "lodash";
 
-import TabbedForm from "../../components/TabbedForm";
-import { fields } from "./fields";
+import TabbedFormV3 from "../../components/TabbedFormV3";
+import { model } from "./fields";
 
 const supplier = [
   {
@@ -42,7 +42,7 @@ const supplier = [
 ];
 
 const defaultValues = {
-  contacts: [
+  suppliers: [
     {
       firstName: "jez",
     },
@@ -59,45 +59,39 @@ const renderButtons = () => (
 );
 
 const SingleForm = () => {
+  const [values, setValues] = useState(defaultValues);
+
   const methods = useForm({
     mode: "onChange",
-    defaultValues,
+    defaultValues: values,
   });
 
-  const { watch, control } = methods;
-  const values = watch();
+  const { getValues } = methods;
 
-  console.log(values);
+  // const { fields, insert } = useFieldArray({ control, name: "suppliers" });
 
-  const { append } = useFieldArray({
-    control: control,
-    name: "contacts",
-  });
-
-  const handleOnAppendField = () => {
-    append({
-      firstName: "new member",
-    });
+  const handleOnAppendField = (data) => {
+    setValues({ suppliers: [...values?.suppliers, { firstName: "foo" }] });
   };
 
-  const updatedFields = useMemo(() => {
-    const { contacts } = merge(defaultValues, values) || {};
-    return contacts;
-  }, [values]);
-
-  const handleOnSubmit = () => {
-    console.log(updatedFields);
+  const handleOnSubmit = (values) => {
+    // console.log(values?.contacts);
+    console.log(values);
   };
 
   const renderTabLabel = (field) => field?.firstName || "new member";
 
+  // console.log(fields);
+
+  // console.log(fields);
+
   return (
     <>
-      <TabbedForm
+      <TabbedFormV3
         methods={methods}
         onSubmit={handleOnSubmit}
-        values={updatedFields}
-        fields={fields}
+        model={model}
+        values={values?.suppliers}
         buttons={renderButtons}
         onAppendField={handleOnAppendField}
         renderTabLabelCallback={renderTabLabel}

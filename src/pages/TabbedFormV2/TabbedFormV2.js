@@ -3,8 +3,8 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { Button } from "@material-ui/core";
 import { merge } from "lodash";
 
-import TabbedForm from "../../components/TabbedForm";
-import { fields } from "./fields";
+import TabbedFormV2 from "../../components/TabbedFormV2";
+import { fields as model } from "./fields";
 
 const supplier = [
   {
@@ -65,11 +65,9 @@ const SingleForm = () => {
   });
 
   const { watch, control } = methods;
-  const values = watch();
+  // const values = watch();
 
-  console.log(values);
-
-  const { append } = useFieldArray({
+  const { append, fields } = useFieldArray({
     control: control,
     name: "contacts",
   });
@@ -80,24 +78,19 @@ const SingleForm = () => {
     });
   };
 
-  const updatedFields = useMemo(() => {
-    const { contacts } = merge(defaultValues, values) || {};
-    return contacts;
-  }, [values]);
-
-  const handleOnSubmit = () => {
-    console.log(updatedFields);
+  const handleOnSubmit = (values) => {
+    console.log(values);
   };
 
   const renderTabLabel = (field) => field?.firstName || "new member";
 
   return (
     <>
-      <TabbedForm
+      <TabbedFormV2
         methods={methods}
         onSubmit={handleOnSubmit}
-        values={updatedFields}
         fields={fields}
+        model={model}
         buttons={renderButtons}
         onAppendField={handleOnAppendField}
         renderTabLabelCallback={renderTabLabel}

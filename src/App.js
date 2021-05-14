@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import SingleForm from "./pages/SingleForm";
 import TabbedForm from "./pages/TabbedForm";
+import TabbedFormV2 from "./pages/TabbedFormV2";
+import TabbedFormV3 from "./pages/TabbedFormV3";
 
 // import ControlledForm from "./ControlledForm";
 // import { fields } from "./fields";
@@ -27,11 +29,17 @@ const App = () => (
         <br />
         <Link to="/tabbed-form">Tabbed form</Link>
       </Route>
-      <Route exact path="/single-form">
+      {/* <Route exact path="/single-form">
         <SingleForm />
       </Route>
       <Route exact path="/tabbed-form">
         <TabbedForm />
+      </Route>
+      <Route exact path="/tabbed-form-v2">
+        <TabbedFormV2 />
+      </Route> */}
+      <Route exact path="/tabbed-form-v3">
+        <TabbedFormV3 />
       </Route>
     </Switch>
   </Router>

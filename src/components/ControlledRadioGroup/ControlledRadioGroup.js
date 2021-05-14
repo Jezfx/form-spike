@@ -15,7 +15,7 @@ const ControlledRadioGroup = ({ defaultValue, name, label, options = [] }) => {
   const error = errors[name];
 
   return (
-    <FormControl component="fieldset" error={!!error}>
+    <FormControl error={!!error}>
       {label && <FormLabel>{label}</FormLabel>}
       <Controller
         name={name}
