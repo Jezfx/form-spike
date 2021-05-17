@@ -55,7 +55,6 @@ const SingleForm = () => {
   });
 
   const { append } = useFieldArray({
-    key: "_id",
     name: "contacts",
     control: methods.control,
   });
@@ -65,23 +64,21 @@ const SingleForm = () => {
   };
 
   const handleOnSubmit = (values) => {
-    console.log(methods.getValues());
+    console.log(values);
   };
 
   const renderTabLabel = (field) => field?.first_name || "new member";
 
   return (
-    <>
-      <TabbedFormV3
-        model={model}
-        methods={methods}
-        buttons={renderButtons}
-        fieldArrayKey="contacts"
-        onSubmit={handleOnSubmit}
-        onAppendField={handleOnAppendField}
-        renderTabLabelCallback={renderTabLabel}
-      />
-    </>
+    <TabbedFormV3
+      model={model}
+      methods={methods}
+      buttons={renderButtons}
+      fieldArrayKey="contacts"
+      onSubmit={handleOnSubmit}
+      onAppendField={handleOnAppendField}
+      renderTabLabelCallback={renderTabLabel}
+    />
   );
 };
 

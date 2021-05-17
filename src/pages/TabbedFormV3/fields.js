@@ -9,11 +9,6 @@ const dropdownOptions = [
 
 export const model = [
   {
-    name: "_id",
-    type: "hidden",
-    Component: ControlledTextField,
-  },
-  {
     name: "roles",
     label: "Roles",
     options: dropdownOptions,
@@ -32,6 +27,11 @@ export const model = [
   {
     name: "last_name",
     label: "Last Name",
+    Component: ControlledTextField,
+  },
+  {
+    name: "_id",
+    type: "hidden",
     Component: ControlledTextField,
   },
 ];

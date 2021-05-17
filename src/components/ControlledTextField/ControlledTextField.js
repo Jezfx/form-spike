@@ -15,7 +15,7 @@ const ControlledTextField = ({
   const error = errors[name];
 
   return (
-    <FormControl error={!!error}>
+    <FormControl hiddenLabel={true} margin="none" error={!!error}>
       {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
       <Controller
         name={name}
