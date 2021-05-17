@@ -16,7 +16,7 @@ const ControlledTextField = ({
 
   return (
     <FormControl error={!!error}>
-      <FormLabel htmlFor={name}>{label}</FormLabel>
+      {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
       <Controller
         name={name}
         control={control}

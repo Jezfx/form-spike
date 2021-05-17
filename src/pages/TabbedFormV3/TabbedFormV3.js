@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Button } from "@material-ui/core";
-import { merge } from "lodash";
+import { tabbedFormValidationResolver } from "./validationSchema";
 
 import TabbedFormV3 from "../../components/TabbedFormV3";
 import { model } from "./fields";
@@ -41,17 +41,6 @@ const supplier = [
   },
 ];
 
-const defaultValues = {
-  suppliers: [
-    {
-      firstName: "jez",
-    },
-    {
-      firstName: "cam",
-    },
-  ],
-};
-
 const renderButtons = () => (
   <Button type="submit" variant="contained" color="primary">
     Save
@@ -59,40 +48,36 @@ const renderButtons = () => (
 );
 
 const SingleForm = () => {
-  const [values, setValues] = useState(defaultValues);
-
   const methods = useForm({
     mode: "onChange",
-    defaultValues: values,
+    defaultValues: { contacts: supplier },
+    resolver: tabbedFormValidationResolver,
   });
 
-  const { getValues } = methods;
+  const { append } = useFieldArray({
+    key: "_id",
+    name: "contacts",
+    control: methods.control,
+  });
 
-  // const { fields, insert } = useFieldArray({ control, name: "suppliers" });
-
-  const handleOnAppendField = (data) => {
-    setValues({ suppliers: [...values?.suppliers, { firstName: "foo" }] });
+  const handleOnAppendField = () => {
+    append({});
   };
 
   const handleOnSubmit = (values) => {
-    // console.log(values?.contacts);
-    console.log(values);
+    console.log(methods.getValues());
   };
 
-  const renderTabLabel = (field) => field?.firstName || "new member";
-
-  // console.log(fields);
-
-  // console.log(fields);
+  const renderTabLabel = (field) => field?.first_name || "new member";
 
   return (
     <>
       <TabbedFormV3
-        methods={methods}
-        onSubmit={handleOnSubmit}
         model={model}
-        values={values?.suppliers}
+        methods={methods}
         buttons={renderButtons}
+        fieldArrayKey="contacts"
+        onSubmit={handleOnSubmit}
         onAppendField={handleOnAppendField}
         renderTabLabelCallback={renderTabLabel}
       />

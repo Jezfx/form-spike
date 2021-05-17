@@ -2,21 +2,36 @@ import ControlledTextField from "../../components/ControlledTextField";
 import ControlledDropdown from "../../components/ControlledDropdown";
 
 const dropdownOptions = [
-  { id: 1, value: "GBP", label: "GBP" },
-  { id: 2, value: "EUR", label: "EUR" },
-  { id: 3, value: "USD", label: "USD" },
+  { value: "Supplier Knowledge Base User", label: "GBP" },
+  { value: "Supplier Read Only User", label: "EUR" },
+  { value: "supplier", label: "supplier" },
 ];
 
 export const model = [
   {
+    name: "_id",
+    type: "hidden",
     Component: ControlledTextField,
-    name: "firstName",
-    label: "Text Field",
   },
   {
-    Component: ControlledDropdown,
-    name: "uk_responsible_person_country",
-    label: "Country *",
+    name: "roles",
+    label: "Roles",
     options: dropdownOptions,
+    Component: ControlledDropdown,
+  },
+  {
+    name: "email",
+    label: "Email",
+    Component: ControlledTextField,
+  },
+  {
+    name: "first_name",
+    label: "First Name",
+    Component: ControlledTextField,
+  },
+  {
+    name: "last_name",
+    label: "Last Name",
+    Component: ControlledTextField,
   },
 ];
