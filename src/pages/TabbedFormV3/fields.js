@@ -1,5 +1,6 @@
 import ControlledTextField from "../../components/ControlledTextField";
 import ControlledDropdown from "../../components/ControlledDropdown";
+import ControlledCheckBox from "../../components/ControlledCheckBox";
 
 const dropdownOptions = [
   { value: "Supplier Knowledge Base User", label: "GBP" },
@@ -7,12 +8,21 @@ const dropdownOptions = [
   { value: "supplier", label: "supplier" },
 ];
 
+const checkboxes = [
+  {
+    value: "Supplier Knowledge Base User",
+    label: "Supplier Knowledge Base User",
+  },
+  { value: "Supplier Read Only User", label: "Supplier Read Only User" },
+  { value: "supplier", label: "supplier" },
+];
+
 export const model = [
   {
     name: "roles",
     label: "Roles",
-    options: dropdownOptions,
-    Component: ControlledDropdown,
+    options: checkboxes,
+    Component: ControlledCheckBox,
   },
   {
     name: "email",

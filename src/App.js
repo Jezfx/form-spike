@@ -29,7 +29,7 @@ const App = () => (
         <br />
         <Link to="/tabbed-form">Tabbed form</Link>
       </Route>
-      {/* <Route exact path="/single-form">
+      <Route exact path="/single-form">
         <SingleForm />
       </Route>
       <Route exact path="/tabbed-form">
@@ -37,7 +37,7 @@ const App = () => (
       </Route>
       <Route exact path="/tabbed-form-v2">
         <TabbedFormV2 />
-      </Route> */}
+      </Route>
       <Route exact path="/tabbed-form-v3">
         <TabbedFormV3 />
       </Route>

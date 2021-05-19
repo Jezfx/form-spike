@@ -7,30 +7,30 @@ import TabbedFormV3 from "../../components/TabbedFormV3";
 import { model } from "./fields";
 
 const supplier = [
-  {
-    roles: ["Supplier Knowledge Base User"],
-    active: true,
-    _id: "609258d5f193547011335cdf",
-    email: "Fiona68@gmail.com",
-    first_name: "Junius",
-    last_name: "Huel",
-  },
-  {
-    roles: ["Supplier Read Only User"],
-    active: true,
-    _id: "609258d5f193547011335cde",
-    email: "Gerry.Kertzmann92@hotmail.com",
-    first_name: "Jerome",
-    last_name: "Hansen",
-  },
-  {
-    roles: ["Supplier Read Only User"],
-    active: true,
-    _id: "609258d5f193547011335ce0",
-    email: "Mariana88@hotmail.com",
-    first_name: "Marcelle",
-    last_name: "Flatley",
-  },
+  // {
+  //   roles: ["Supplier Knowledge Base User"],
+  //   active: true,
+  //   _id: "609258d5f193547011335cdf",
+  //   email: "Fiona68@gmail.com",
+  //   first_name: "Junius",
+  //   last_name: "Huel",
+  // },
+  // {
+  //   roles: ["Supplier Read Only User"],
+  //   active: true,
+  //   _id: "609258d5f193547011335cde",
+  //   email: "Gerry.Kertzmann92@hotmail.com",
+  //   first_name: "Jerome",
+  //   last_name: "Hansen",
+  // },
+  // {
+  //   roles: ["Supplier Read Only User"],
+  //   active: true,
+  //   _id: "609258d5f193547011335ce0",
+  //   email: "Mariana88@hotmail.com",
+  //   first_name: "Marcelle",
+  //   last_name: "Flatley",
+  // },
   {
     roles: ["supplier"],
     active: true,
@@ -54,7 +54,7 @@ const SingleForm = () => {
     resolver: tabbedFormValidationResolver,
   });
 
-  const { append } = useFieldArray({
+  const { append, fields: arrayFields } = useFieldArray({
     name: "contacts",
     control: methods.control,
   });
@@ -73,6 +73,7 @@ const SingleForm = () => {
     <TabbedFormV3
       model={model}
       methods={methods}
+      fields={arrayFields}
       buttons={renderButtons}
       fieldArrayKey="contacts"
       onSubmit={handleOnSubmit}

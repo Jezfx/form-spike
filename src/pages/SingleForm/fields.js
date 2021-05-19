@@ -13,6 +13,15 @@ const dropdownOptions = [
   { value: "USD", label: "USD" },
 ];
 
+const checkboxes = [
+  {
+    value: "Supplier Knowledge Base User",
+    label: "Supplier Knowledge Base User",
+  },
+  { value: "Supplier Read Only User", label: "Supplier Read Only User" },
+  { value: "supplier", label: "supplier" },
+];
+
 export const fields = [
   {
     Component: ControlledTextField,
@@ -23,40 +32,7 @@ export const fields = [
     Component: ControlledCheckBox,
     name: "checkboxes",
     label: "CheckBoxes",
-    options: [
-      {
-        value: "foo",
-        name: "checkbox_one",
-        label: "Foo",
-      },
-      {
-        label: "Other",
-        name: "other",
-        value: "other",
-      },
-    ],
-    followUp: {
-      condition: isOtherIncluded,
-      fields: [
-        {
-          label: "Other Options...",
-          Component: ControlledRadioGroup,
-          name: "level_two",
-          options: [
-            {
-              name: "isSameName",
-              label: "Yes",
-              value: "yes",
-            },
-            {
-              name: "isDifferentName",
-              label: "No",
-              value: "no",
-            },
-          ],
-        },
-      ],
-    },
+    options: checkboxes,
   },
   {
     Component: ControlledFieldArray,
